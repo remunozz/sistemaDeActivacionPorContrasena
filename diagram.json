@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "author": "Raúl Muñoz",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 321.5,
+      "left": -283.4,
+      "attrs": { "env": "micropython-20231005-v1.21.0" }
+    },
+    {
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad1",
+      "top": -11.6,
+      "left": -589.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 313.6,
+      "left": -52,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-servo", "id": "servo2", "top": 478, "left": -48, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-115.2", "v-38.4", "h-153.6", "v163.2" ] ],
+    [ "lcd1:VCC", "esp:VIN", "red", [ "h-124.8", "v-38.3", "h-124.8", "v163.2", "h19.2" ] ],
+    [ "lcd1:SDA", "esp:D21", "gold", [ "h-115.2", "v19.4" ] ],
+    [ "lcd1:SCL", "esp:D22", "blue", [ "h-124.8", "v0.3" ] ],
+    [ "keypad1:R1", "esp:D2", "green", [ "v268.8", "h393.6", "v-124.8" ] ],
+    [ "keypad1:R2", "esp:D4", "green", [ "v259.2", "h374", "v-153.6" ] ],
+    [ "keypad1:R3", "esp:D5", "green", [ "v249.6", "h354.9", "v-153.6" ] ],
+    [ "keypad1:R4", "esp:D19", "green", [ "v240", "h335.8", "v-172.8" ] ],
+    [ "keypad1:C1", "esp:D12", "green", [ "v0" ] ],
+    [ "keypad1:C2", "esp:D27", "green", [ "v0" ] ],
+    [ "keypad1:C3", "esp:D26", "green", [ "v0" ] ],
+    [ "keypad1:C4", "esp:D25", "green", [ "v0" ] ],
+    [ "servo2:GND", "esp:GND.2", "black", [ "h-268.8", "v-57.6" ] ],
+    [ "servo2:V+", "esp:VIN", "red", [ "h-249.6", "v-57.5" ] ],
+    [ "servo2:PWM", "esp:D15", "orange", [ "h-105.6", "v-86.2" ] ]
+  ],
+  "dependencies": {}
+}
