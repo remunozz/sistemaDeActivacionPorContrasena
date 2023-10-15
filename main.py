@@ -74,13 +74,26 @@ entered_password = ''
 # Se crea una contraseña segura con SHA256, la contraseña es:'1234567890'
 correct_hash = b'\xc7u\xe7\xb7W\xed\xe60\xcd\n\xa1\x11;\xd1\x02f\x1a\xb3\x88)\xcaR\xa6B*\xb7\x82\x86/&\x86F'
 
-# Mensaje inicial en estado de reposo
-lcd.putstr('Bienvenido. Presione una tecla: ')
+# Mensaje inicial o de bienvenida al sistema
+def mensajeDeBienvenida():
+    lcd.putstr('Bienvenido al sistema : ')
+    sleep(2) # Temporizador de 2 segundos para el mensaje inicial o de bienvenida al sistema
 
+# Mensaje de estado de reposo 
+def mansajeEstadoDeReposo():
+    lcd.clear() # Limpia el displey LCD
+    lcd.putstr('Ingrese la contrasena: ')
+    
 # Flag o marcador para limpiar LCD 
 count = 1
 # Flag o marcador para distinguir cuando se ha entrado al Estado de Contraseña Correcta
 count_1 = 0
+
+# LLamado a la función mensajeDeBienvenida 
+mensajeDeBienvenida()
+
+# LLamado a la funcion mansajeEstadoDeReposo
+mansajeEstadoDeReposo() 
 
 while True:  # Inicia un bucle infinito para controlar el sistema
         
@@ -102,8 +115,7 @@ while True:  # Inicia un bucle infinito para controlar el sistema
                             lcd.putstr('Contrasena Incorrecta') # Se muestra mensaje en displey LCD al usuario, Contraseña Incorrecta
                             sleep(2) # Temporizador para el mensaje de Contraseña Incorrecta de 2 segundos
                             entered_password = '' # Se limpia el buffer o string que almacena la contraseña
-                            lcd.clear() # Limpia el displey LCD
-                            lcd.putstr('Bienvenido. Presione una tecla: ') # Se muestra mensaje en displey LCD al usuario, Bienvenido. Presione una tecla: ; correspondiente al estado de reposo
+                            mansajeEstadoDeReposo() # LLamado a la funcion mansajeEstadoDeReposo
                             print('\nEstado de Reposo') # Se muestra en consola Estado de Reposo
                             count = 1 # Pone el flag o marcador en 1, booleano True                       
                     elif key.name is '#':
@@ -115,8 +127,7 @@ while True:  # Inicia un bucle infinito para controlar el sistema
                             controller_servo_motor(90) # Reestablecimiento de la posición inicial del servomotor que se mueve desde la posición de 90° a 180°
                             count_1 = 0 # Pone el flag o marcador en 0, booleano False 
                         entered_password = '' # Se limpia el buffer o string que almacena la contraseña
-                        lcd.clear() # Limpia el displey LCD
-                        lcd.putstr('Bienvenido. Presione una tecla: ') # Se muestra mensaje en displey LCD al usuario, Bienvenido. Presione una tecla: ; correspondiente al estado de reposo
+                        mansajeEstadoDeReposo() # LLamado a la funcion mansajeEstadoDeReposo
                         print('\nEstado de Reposo') # Se muestra en consola Estado de Reposo
                         count = 1 # Pone el flag o marcador en 1, booleano True                             
                     else:
